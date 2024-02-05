@@ -1,0 +1,6 @@
+/bin/
+/config/
+/data/
+/data/mysql/
+/data/.gitkeep
+/logs/
