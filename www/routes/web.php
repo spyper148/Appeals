@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\QuestionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +16,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::resources([
-    'questions' => QuestionsController::class
-]);
-Route::get('/admin',[QuestionsController::class,'admin'])->name('admin');
