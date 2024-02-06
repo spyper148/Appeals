@@ -15,8 +15,15 @@ class QuestionsController extends Controller
      */
     public function index():View
     {
-        $questions = Questions::all();
-        return view('questions.index',compact('questions'),);
+        $questions_ans = Questions::query()
+            ->where('status','=','answered')
+            ->orderByRaw('updated_at DESC')
+            ->paginate(4);
+        $questions_new = Questions::query()
+            ->where('status','=','new')
+            ->orderByRaw('created_at DESC')
+            ->paginate(4);
+        return view('questions.index',compact('questions_ans','questions_new'));
     }
 
     /**
@@ -76,14 +83,15 @@ class QuestionsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Questions $questions)
+    public function destroy(Questions $question):RedirectResponse
     {
-        //
+        $question->delete();
+        return redirect()->route('admin');
     }
 
     public function admin():View
     {
-        $questions = Questions::all();
+        $questions = Questions::query()->orderByRaw('status DESC')->get();
         return \view('admin.index',compact('questions'));
     }
 }
