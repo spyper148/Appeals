@@ -51,19 +51,7 @@
         </div>
     <hr>
     {{$questions_ans->links()}}
-    <h3>Новые</h3>
-    <table class="table table-hover">
-        <tr>
-            <td>Вопрос</td>
-        </tr>
-        @foreach($questions_new as $question)
-            <tr>
-                <td>{{$question->question}}</td>
-            </tr>
-        @endforeach
 
-    </table>
-    <div>{{$questions_new->links()}}</div>
     </div>
 
 
